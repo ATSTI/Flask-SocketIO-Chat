@@ -6,14 +6,19 @@ from .forms import LoginForm
 @main.route('/', methods=['GET', 'POST'])
 def index():
     """Login form to enter a room."""
+    #import pudb;pu.db
     form = LoginForm()
     if form.validate_on_submit():
         session['name'] = form.name.data
         session['room'] = form.room.data
         return redirect(url_for('.chat'))
     elif request.method == 'GET':
-        form.name.data = session.get('name', '')
-        form.room.data = session.get('room', '')
+        nome = request.args.get("name")
+        sala = request.args.get("cnpj")
+        #form.name.data = session.get('name', '')
+        #form.room.data = session.get('room', '')
+        form.name.data = nome
+        form.room.data = sala
     return render_template('index.html', form=form)
 
 
@@ -23,6 +28,7 @@ def chat():
     the session."""
     name = session.get('name', '')
     room = session.get('room', '')
+    #import pudb;pu.db
     if name == '' or room == '':
         return redirect(url_for('.index'))
     return render_template('chat.html', name=name, room=room)
