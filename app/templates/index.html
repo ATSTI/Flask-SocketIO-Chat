@@ -1,14 +1,53 @@
 <html>
     <head>
         <title>ATS Suporte</title>
+        <style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+</style>
     </head>
+    
     <body>
-        <h1>Helpdesk ATS</h1>
+        <h1>SUPORTE ATS</h1>
         <form method="POST">
+            <table width="30%";>
+                <tr><td>
+            <table width="30%";>
+            <tr><td>
             {{ form.hidden_tag() }}
-            {{ form.name.label }}: {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
-            {{ form.room.label }}: {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
-            {{ form.submit() }}
+            </td></tr>
+            <tr><td>
+            {{ form.name.label }}: <br>
+            </td>
+            <td>
+                {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}</td></tr>
+            <tr>
+               <td>
+                    {{ form.room.label }}: <br>
+               </td>
+               <td>
+                    {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}
+                </td>
+            </tr>
+            </table>
+            </td></tr>
+            <tr>
+                <td>
+                    <button class="button button2">{{ form.submit() }}</button> 
+                </td>
+            </tr>
+            </table>
         </form>
     </body>
 </html>

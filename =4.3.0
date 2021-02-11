@@ -1,0 +1,6 @@
+Collecting python-socketio
+  Using cached python_socketio-5.0.4-py2.py3-none-any.whl (52 kB)
+Requirement already satisfied: python-engineio>=4 in /mnt/4dddcd7c-fa6a-4c2b-93a8-c413a1a7a949/home/publico/desenv/python/venv_flask/lib/python3.8/site-packages (from python-socketio) (4.0.0)
+Requirement already satisfied: bidict>=0.21.0 in /mnt/4dddcd7c-fa6a-4c2b-93a8-c413a1a7a949/home/publico/desenv/python/venv_flask/lib/python3.8/site-packages (from python-socketio) (0.21.2)
+Installing collected packages: python-socketio
+Successfully installed python-socketio-5.0.4
