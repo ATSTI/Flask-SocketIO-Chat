@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Flask-SocketIO-Chat:</title>
+       <style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+</style>
+    </head>
+    <body>
+        <!--<b>TTTTTTTTTTTTTTTTTT</b>
+        {% for chat in chats %}
+      <p>{{chat.descricao}}</p>
+    {% endfor %}  -->
+    CARLOS <br>
+    <table border="1">
+    {%- for chat in chats %}
+        {% set link_atendimento = 'http://127.0.0.1:8000/?cnpj=' + chat.cliente + '&name=Carlos' %}
+        <tr>
+            <td><a href="{{ link_atendimento}}">ATENDER</a></td>
+            <!--<td>{{ link_atendimento }}</td>-->
+            <td>{{ chat.cliente }}</td>
+            <td>{{ chat.suporte }}</td>
+            <td>{{ chat.descricao }}</td>
+            <td>{{ chat.atendente }}</td>
+        </tr>
+    {%- endfor %}
+    </table>
+
+    </body>
+</html>

@@ -1,6 +1,6 @@
 import os
 import sys
-import datetime
+from datetime import datetime, date, timedelta
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -20,6 +20,9 @@ class Suporte(Base):
     suporte = Column(String(60), nullable=False)
     descricao = Column(String(120), nullable=False)
     situacao = Column(String(20), default='nova')
+    atendente = Column(String(20))
+    #link = Column(String(60))
+    
  
 class Conexao(object):
     """
@@ -47,6 +50,8 @@ class Conexao(object):
         return session
         
     def grava_conversa(self, cliente, contato, data_suporte, suporte, descricao):
+        #link = 'http://127.0.0.1:8000/?cnpj=%s&name=' \
+        #        %(cliente)
         conversa = Suporte(cliente=cliente, contato=contato, 
             suporte=suporte, descricao=descricao)
         ses = self.inicia_bd()
@@ -66,3 +71,20 @@ class Conexao(object):
             return conversa
         return 'NADA'
 
+    def lista_chamada(self):
+        ses = self.inicia_bd()
+        #import pudb;pu.db
+        data_atual = date.today()
+        hoje = '%s-%s-%s 03:00:00' %(str(data_atual.year),
+             str(data_atual.month).zfill(2),
+            str(data_atual.day).zfill(2))
+        conversa = (
+            ses.query(Suporte)
+            .filter(Suporte.data_suporte > hoje
+            )
+        )
+        #conversa = ses.query(Suporte).all()
+
+        for cnv in conversa:
+            return conversa
+        return 'NADA'
